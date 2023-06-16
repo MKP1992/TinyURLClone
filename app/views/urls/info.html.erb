@@ -1,0 +1,19 @@
+<h1>URL Info</h1>
+
+<h2>Original URL:</h2>
+<p><%= @url.original_url %></p>
+
+<h2>Short URL:</h2>
+<p><%= url_for(slug: @url.slug, only_path: false) %></p>
+
+<h2>Visitor Count:</h2>
+<p><%= @visits.count %></p>
+
+<h2>Visits:</h2>
+<ul>
+  <% @visits.each do |visit| %>
+    <li><%= visit.ip_address %></li>
+  <% end %>
+</ul>
+
+<%= button_to "Back", root_path, :method => "get" %>

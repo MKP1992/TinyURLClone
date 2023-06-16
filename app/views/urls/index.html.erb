@@ -1,0 +1,26 @@
+<h1>TinyURL Clone</h1>
+
+<%= form_with model: @url, url: root_path, method: :post do |form| %>
+  <%= form.text_field :original_url, placeholder: 'Enter URL', required: true %>
+  <%= form.submit 'Shorten URL' %>
+<% end %>
+
+
+<h1>TinyURL List</h1>
+  <table border="5">
+    <thead>
+      <th>Original URL:</th>
+      <th>Short URL:</th>
+      <th>Visitor Count:</th>
+    </thead>
+    <tbody>
+      <% @urls.each do |url| %>
+        <tr>
+            <td> <%= url.original_url %> </td>
+            <td> <%= url_for(slug: url.slug, only_path: false) %> </td>
+          <td> <%= url.visits.count %> </td>
+          <td> <%= button_to "Info", url_info_path(slug: url.slug), :method => "get" %> </td>
+        </tr>
+    <% end %>
+  </tbody>
+  </table>
